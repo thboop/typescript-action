@@ -3185,9 +3185,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const github = __importStar(__webpack_require__(469));
 function run() {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             core.info(`Issue context is: ${JSON.stringify(github.context.issue)}`);
+            core.info(`PR number is is: ${JSON.stringify((_a = github.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.number)}`);
+            core.info(`Action is: ${JSON.stringify(github.context.payload.action)}`);
         }
         catch (error) {
             core.setFailed(error.message);
