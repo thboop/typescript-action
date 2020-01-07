@@ -3,7 +3,7 @@ import * as github from '@actions/github'
 
 async function run(): Promise<void> {
   try {
-    core.info(`Issue context is: ${JSON.stringify(github.context.issue)}`)
+    core.info(`Issue number is: ${JSON.stringify(github.context.issue.number)}`)
     core.info(
       `PR number is is: ${JSON.stringify(
         github.context.payload.pull_request?.number

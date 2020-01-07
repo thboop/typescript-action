@@ -3188,7 +3188,7 @@ function run() {
     var _a, _b, _c, _d;
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            core.info(`Issue context is: ${JSON.stringify(github.context.issue)}`);
+            core.info(`Issue number is: ${JSON.stringify(github.context.issue.number)}`);
             core.info(`PR number is is: ${JSON.stringify((_a = github.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.number)}`);
             core.info(`Action is: ${JSON.stringify(github.context.payload.action)}`);
             core.info(`pull_request is: ${JSON.stringify((_b = github.context.payload.pull_request) === null || _b === void 0 ? void 0 : _b.number)}`);
