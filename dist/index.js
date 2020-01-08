@@ -3188,12 +3188,12 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const payload = github.context.payload;
-            core.info("running the action");
+            core.info('running the action');
             if (payload.head_commit) {
                 core.info(`The head commit is: ${payload.head_commit}`);
             }
-            if (payload.number) {
-                core.info(`The pr number is: ${payload.number}`);
+            if (payload.pull_request.number) {
+                core.info(`The pr number is: ${payload.pull_request.number}`);
             }
             if (payload && 'issue' in payload) {
                 core.info(`The issue is: ${JSON.stringify(payload.issue.number)}`);

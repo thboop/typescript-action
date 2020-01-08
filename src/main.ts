@@ -14,10 +14,12 @@ async function run(): Promise<void> {
       )
     }
 
-    if ((payload as Webhooks.WebhookPayloadPullRequest).number) {
+    if (
+      (payload as Webhooks.WebhookPayloadPullRequestReview).pull_request.number
+    ) {
       core.info(
         `The pr number is: ${
-          (payload as Webhooks.WebhookPayloadPullRequest).number
+          (payload as Webhooks.WebhookPayloadPullRequest).pull_request.number
         }`
       )
     }
