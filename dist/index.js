@@ -3185,16 +3185,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const github = __importStar(__webpack_require__(469));
 function run() {
-    var _a, _b, _c, _d;
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            core.info(`Issue number is: ${JSON.stringify(github.context.issue.number)}`);
-            core.info(`PR number is is: ${JSON.stringify((_a = github.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.number)}`);
-            core.info(`Action is: ${JSON.stringify(github.context.payload.action)}`);
-            core.info(`pull_request is: ${JSON.stringify((_b = github.context.payload.pull_request) === null || _b === void 0 ? void 0 : _b.number)}`);
-            core.info(`pullRequest is: ${JSON.stringify((_c = github.context.payload.pullRequest) === null || _c === void 0 ? void 0 : _c.number)}`);
-            core.info(`issue is: ${JSON.stringify((_d = github.context.payload.issue) === null || _d === void 0 ? void 0 : _d.number)}`);
-            core.info(`root is: ${JSON.stringify(github.context.payload.number)}`);
+            const payload = github.context.payload;
+            if (payload.head_commit) {
+                core.info(`The head commit is: ${payload.head_commit}`);
+            }
+            if (payload && 'issue' in payload) {
+                core.info(`The issue is: ${JSON.stringify(payload.issue.number)}`);
+            }
         }
         catch (error) {
             core.setFailed(error.message);
@@ -3411,7 +3410,6 @@ class Context {
      * Hydrate the context from the environment
      */
     constructor() {
-        this.payload = {};
         if (process.env.GITHUB_EVENT_PATH) {
             if (fs_1.existsSync(process.env.GITHUB_EVENT_PATH)) {
                 this.payload = JSON.parse(fs_1.readFileSync(process.env.GITHUB_EVENT_PATH, { encoding: 'utf8' }));
@@ -3429,18 +3427,21 @@ class Context {
         this.actor = process.env.GITHUB_ACTOR;
     }
     get issue() {
+        // TODO: https://github.com/actions/toolkit/issues/291 to remove no-unnecessary-type-assertion
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unnecessary-type-assertion
         const payload = this.payload;
         return Object.assign(Object.assign({}, this.repo), { number: (payload.issue || payload.pull_request || payload).number });
     }
     get repo() {
+        var _a, _b, _c;
         if (process.env.GITHUB_REPOSITORY) {
             const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
             return { owner, repo };
         }
-        if (this.payload.repository) {
+        if ((_a = this.payload) === null || _a === void 0 ? void 0 : _a.repository) {
             return {
-                owner: this.payload.repository.owner.login,
-                repo: this.payload.repository.name
+                owner: (_b = this.payload) === null || _b === void 0 ? void 0 : _b.repository.owner.login,
+                repo: (_c = this.payload) === null || _c === void 0 ? void 0 : _c.repository.name
             };
         }
         throw new Error("context.repo requires a GITHUB_REPOSITORY environment variable like 'owner/repo'");
