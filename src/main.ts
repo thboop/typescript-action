@@ -5,11 +5,19 @@ import {Webhooks} from '@actions/github/lib/interfaces'
 async function run(): Promise<void> {
   try {
     const payload = github.context.payload
-
+    core.info("running the action")
     if ((payload as Webhooks.WebhookPayloadPush).head_commit) {
       core.info(
         `The head commit is: ${
           (payload as Webhooks.WebhookPayloadPush).head_commit
+        }`
+      )
+    }
+
+    if ((payload as Webhooks.WebhookPayloadPullRequest).number) {
+      core.info(
+        `The pr number is: ${
+          (payload as Webhooks.WebhookPayloadPullRequest).number
         }`
       )
     }
