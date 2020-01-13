@@ -3189,10 +3189,11 @@ function run() {
         try {
             const payload = github.context.payload;
             core.info('running the action');
-            if (payload.head_commit) {
-                core.info(`The head commit is: ${payload.head_commit}`);
+            if (github.context.eventName === 'push') {
+                const pushPayload = github.context.payload;
+                core.info(`The head commit is: ${pushPayload.head_commit}`);
             }
-            if (payload.pull_request.number) {
+            if (github.context.eventName === 'pull_request_review') {
                 core.info(`The pr number is: ${payload.pull_request.number}`);
             }
             if (payload && 'issue' in payload) {

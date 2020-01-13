@@ -1,22 +1,17 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
-import {Webhooks} from '@actions/github/lib/interfaces'
+import * as Webhooks from '@octokit/webhooks'
 
 async function run(): Promise<void> {
   try {
     const payload = github.context.payload
     core.info('running the action')
-    if ((payload as Webhooks.WebhookPayloadPush).head_commit) {
-      core.info(
-        `The head commit is: ${
-          (payload as Webhooks.WebhookPayloadPush).head_commit
-        }`
-      )
+    if (github.context.eventName === 'push') {
+      const pushPayload = github.context.payload as Webhooks.WebhookPayloadPush
+      core.info(`The head commit is: ${pushPayload.head_commit}`)
     }
 
-    if (
-      (payload as Webhooks.WebhookPayloadPullRequestReview).pull_request.number
-    ) {
+    if (github.context.eventName === 'pull_request_review') {
       core.info(
         `The pr number is: ${
           (payload as Webhooks.WebhookPayloadPullRequest).pull_request.number
