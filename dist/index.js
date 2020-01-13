@@ -3196,8 +3196,8 @@ function run() {
             if (github.context.eventName === 'pull_request_review') {
                 core.info(`The pr number is: ${payload.pull_request.number}`);
             }
-            if (payload && 'issue' in payload) {
-                core.info(`The issue is: ${JSON.stringify(payload.issue.number)}`);
+            if (payload && 'pull_request' in payload) {
+                core.info(`The issue is: ${JSON.stringify(payload.pull_request.number)}`);
             }
         }
         catch (error) {
