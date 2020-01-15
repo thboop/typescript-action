@@ -18,10 +18,6 @@ async function run(): Promise<void> {
         }`
       )
     }
-
-    if (payload && 'pull_request' in payload) {
-      core.info(`The issue is: ${JSON.stringify(payload.pull_request.number)}`)
-    }
   } catch (error) {
     core.setFailed(error.message)
   }
