@@ -3187,15 +3187,8 @@ const github = __importStar(__webpack_require__(469));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const payload = github.context.payload;
             core.info('running the action');
-            if (github.context.eventName === 'push') {
-                const pushPayload = github.context.payload;
-                core.info(`The head commit is: ${pushPayload.head_commit}`);
-            }
-            if (github.context.eventName === 'pull_request_review') {
-                core.info(`The pr number is: ${payload.pull_request.number}`);
-            }
+            core.info(`The issue number is: ${github.context.issue.number}`);
         }
         catch (error) {
             core.setFailed(error.message);
