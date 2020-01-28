@@ -1,10 +1,9 @@
 import * as core from '@actions/core'
-import * as github from '@actions/github'
 
 async function run(): Promise<void> {
   try {
-    core.info('running the action')
-    core.info(`The issue number is: ${github.context.issue.number}`)
+    core.exportVariable('ENV_VARIABLE', 'test')
+    core.info('Ran the action')
   } catch (error) {
     core.setFailed(error.message)
   }
