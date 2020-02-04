@@ -77,6 +77,7 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             core.exportVariable('LD_LIBRARY_PATH', 'test');
+            core.exportVariable('LA_LIBRARY_PATH', 'test');
             core.info('Ran the action');
         }
         catch (error) {
