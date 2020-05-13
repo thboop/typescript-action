@@ -3519,7 +3519,7 @@ function extractXar(file, dest, flags = '-x') {
     return __awaiter(this, void 0, void 0, function* () {
         assert_1.ok(IS_MAC, 'extractXar() not supported on current OS');
         assert_1.ok(file, 'parameter "file" is required');
-        dest = dest || (yield _createExtractFolder(dest));
+        dest = yield _createExtractFolder(dest);
         const args = [flags, '-C', dest, '-f', file];
         if (core.isDebug() && !flags.includes('v')) {
             args.push('-v');
