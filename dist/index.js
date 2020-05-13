@@ -1279,11 +1279,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const tc = __importStar(__webpack_require__(533));
 /* eslint-disable no-empty */
+/* eslint-disable no-console */
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const node12Path = yield tc.downloadTool('https://nodejs.org/dist/v12.7.0/node-v12.7.0.pkg');
-            yield tc.extractXar(node12Path, 'test/test2');
+            const path = yield tc.extractXar(node12Path, 'test/test2');
+            console.log(path);
         }
         catch (_a) { }
     });
