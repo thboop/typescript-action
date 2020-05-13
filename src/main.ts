@@ -1,5 +1,4 @@
 import * as tc from '@actions/tool-cache'
-/* eslint-disable no-empty */
 /* eslint-disable no-console */
 
 async function run(): Promise<void> {
@@ -9,7 +8,9 @@ async function run(): Promise<void> {
     )
     const path = await tc.extractXar(node12Path, 'test/test2')
     console.log(path)
-  } catch {}
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 run()

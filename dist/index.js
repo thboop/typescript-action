@@ -1278,7 +1278,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const tc = __importStar(__webpack_require__(533));
-/* eslint-disable no-empty */
 /* eslint-disable no-console */
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -1287,7 +1286,9 @@ function run() {
             const path = yield tc.extractXar(node12Path, 'test/test2');
             console.log(path);
         }
-        catch (_a) { }
+        catch (e) {
+            console.error(e);
+        }
     });
 }
 run();
