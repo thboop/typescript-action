@@ -8,8 +8,10 @@ async function run(): Promise<void> {
     )
     const path = await tc.extractXar(node12Path, 'test/test2')
     console.log(path)
+    console.log('test2')
   } catch (e) {
     console.error(e)
+    console.log('test3')
   }
 }
 

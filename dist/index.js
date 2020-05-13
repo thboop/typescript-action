@@ -1285,9 +1285,11 @@ function run() {
             const node12Path = yield tc.downloadTool('https://nodejs.org/dist/v12.7.0/node-v12.7.0.pkg');
             const path = yield tc.extractXar(node12Path, 'test/test2');
             console.log(path);
+            console.log('test2');
         }
         catch (e) {
             console.error(e);
+            console.log('test3');
         }
     });
 }
