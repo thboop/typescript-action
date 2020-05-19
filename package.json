@@ -31,6 +31,7 @@
     "@octokit/core": "^2.5.0",
     "@octokit/plugin-paginate-rest": "^2.2.0",
     "@octokit/plugin-rest-endpoint-methods": "^3.11.0",
+    "@octokit/rest": "^17.9.2",
     "@octokit/webhooks": "^7.0.0"
   },
   "devDependencies": {

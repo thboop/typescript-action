@@ -1,17 +1,28 @@
-import * as tc from '@actions/tool-cache'
+import {Octokit} from '@octokit/rest'
+import {env} from 'process'
+import {getInput} from '@actions/core'
+
 /* eslint-disable no-console */
 
 async function run(): Promise<void> {
   try {
-    const node12Path = await tc.downloadTool(
-      'https://nodejs.org/dist/v12.7.0/node-v12.7.0.pkg'
+    var mykit = new Octokit({
+      baseUrl: env['GITHUB_API_URL'],
+      auth: 'token ' + getInput('token')
+    })
+    console.log(
+      mykit.repos.getBranch({
+        owner: 'ghe-admin',
+        repo: 'asdf',
+        branch: 'master'
+      })
     )
-    const path = await tc.extractXar(node12Path, 'test/test2')
-    console.log(path)
-    console.log('test2')
+    const repository = await mykit.graphql(
+      '{repository(owner:"ghe-admin", name:"asdf"){name}}'
+    )
+    console.log(repository)
   } catch (e) {
     console.error(e)
-    console.log('test3')
   }
 }
 
