@@ -661,7 +661,8 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             var baseUrl = process_1.env['GITHUB_API_URL'] || "";
-            baseUrl = baseUrl.substring(0, baseUrl.length - 3);
+            baseUrl = baseUrl.substring(0, baseUrl.length - 7);
+            console.log("baseurl is " + baseUrl);
             var mykit = new rest_1.Octokit({
                 baseUrl,
                 auth: 'token ' + core_1.getInput('token')
@@ -671,9 +672,9 @@ function run() {
                 repo: 'asdf',
                 branch: 'master'
             });
-            console.log("first repo is" + repo);
+            console.log("v3 got the response is" + JSON.stringify(repo));
             const repository = yield mykit.graphql('{repository(owner:"ghe-admin", name:"asdf"){name}}');
-            console.log("second repo is" + repository);
+            console.log("graphql got the response is" + JSON.stringify(repository));
         }
         catch (e) {
             console.error(e);
