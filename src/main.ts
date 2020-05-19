@@ -6,21 +6,23 @@ import {getInput} from '@actions/core'
 
 async function run(): Promise<void> {
   try {
+
+    var baseUrl = env['GITHUB_API_URL'];
     var mykit = new Octokit({
       baseUrl: env['GITHUB_API_URL'],
       auth: 'token ' + getInput('token')
     })
-    console.log(
-      mykit.repos.getBranch({
-        owner: 'ghe-admin',
-        repo: 'asdf',
-        branch: 'master'
-      })
-    )
+
+    const repo = await mykit.repos.getBranch({
+      owner: 'ghe-admin',
+      repo: 'asdf',
+      branch: 'master'
+    })
+    console.log("first repo is" + repo)
     const repository = await mykit.graphql(
       '{repository(owner:"ghe-admin", name:"asdf"){name}}'
     )
-    console.log(repository)
+    console.log("second repo is" + repository)
   } catch (e) {
     console.error(e)
   }
