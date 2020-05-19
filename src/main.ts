@@ -8,9 +8,9 @@ async function run(): Promise<void> {
   try {
 
     var baseUrl = env['GITHUB_API_URL'] || "";
-    baseUrl = baseUrl.substring(0, baseUrl.length - 3);
+    //baseUrl = baseUrl.substring(0, baseUrl.length - 3);
     var mykit = new Octokit({
-      baseUrl: env['GITHUB_API_URL'],
+      baseUrl,
       auth: 'token ' + getInput('token')
     })
 

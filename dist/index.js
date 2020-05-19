@@ -660,17 +660,20 @@ const core_1 = __webpack_require__(393);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            var baseUrl = process_1.env['GITHUB_API_URL'] || "";
+            //baseUrl = baseUrl.substring(0, baseUrl.length - 3);
             var mykit = new rest_1.Octokit({
-                baseUrl: process_1.env["GITHUB_API_URL"],
-                auth: 'token ' + core_1.getInput("token")
+                baseUrl,
+                auth: 'token ' + core_1.getInput('token')
             });
-            console.log(mykit.repos.getBranch({
+            const repo = yield mykit.repos.getBranch({
                 owner: 'ghe-admin',
                 repo: 'asdf',
                 branch: 'master'
-            }));
+            });
+            console.log("first repo is" + repo);
             const repository = yield mykit.graphql('{repository(owner:"ghe-admin", name:"asdf"){name}}');
-            console.log(repository);
+            console.log("second repo is" + repository);
         }
         catch (e) {
             console.error(e);
