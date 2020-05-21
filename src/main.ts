@@ -21,7 +21,7 @@ async function run(): Promise<void> {
     })
     console.log("v3 got the response is" + JSON.stringify(repo))
     const repository = await mykit.graphql(
-      '{repository(owner:"' + getInput('owner') + '", name:"' + getInput("repo") + 'asdf"){name}}'
+      '{repository(owner:"' + getInput('owner') + '", name:"' + getInput("repo") + '"){name}}'
     )
     console.log("graphql got the response is" + JSON.stringify(repository))
   } catch (e) {

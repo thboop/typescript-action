@@ -4045,7 +4045,7 @@ function run() {
                 branch: 'master'
             });
             console.log("v3 got the response is" + JSON.stringify(repo));
-            const repository = yield mykit.graphql('{repository(owner:"' + core_1.getInput('owner') + '", name:"' + core_1.getInput("repo") + 'asdf"){name}}');
+            const repository = yield mykit.graphql('{repository(owner:"' + core_1.getInput('owner') + '", name:"' + core_1.getInput("repo") + '"){name}}');
             console.log("graphql got the response is" + JSON.stringify(repository));
         }
         catch (e) {
