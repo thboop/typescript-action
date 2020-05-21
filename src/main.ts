@@ -1,4 +1,4 @@
-import {Octokit} from '@octokit/rest'
+import {GitHub} from '@actions/github'
 import {env} from 'process'
 import {getInput} from '@actions/core'
 
@@ -8,9 +8,8 @@ async function run(): Promise<void> {
   try {
 
     var baseUrl = env['GITHUB_API_URL'] || "";
-    baseUrl = baseUrl.substring(0, baseUrl.length - 7);
     console.log("baseurl is " + baseUrl)
-    var mykit = new Octokit({
+    var mykit = new GitHub({
       baseUrl,
       auth: 'token ' + getInput('token')
     })
