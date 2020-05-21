@@ -15,13 +15,13 @@ async function run(): Promise<void> {
     })
 
     const repo = await mykit.repos.getBranch({
-      owner: 'ghe-admin',
-      repo: 'asdf',
+      owner: getInput('owner'),
+      repo: getInput('repo'),
       branch: 'master'
     })
     console.log("v3 got the response is" + JSON.stringify(repo))
     const repository = await mykit.graphql(
-      '{repository(owner:"ghe-admin", name:"asdf"){name}}'
+      '{repository(owner:"' + getInput('owner') + '", name:"' + getInput("repo") + 'asdf"){name}}'
     )
     console.log("graphql got the response is" + JSON.stringify(repository))
   } catch (e) {

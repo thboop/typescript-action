@@ -4040,12 +4040,12 @@ function run() {
                 auth: 'token ' + core_1.getInput('token')
             });
             const repo = yield mykit.repos.getBranch({
-                owner: 'ghe-admin',
-                repo: 'asdf',
+                owner: core_1.getInput('owner'),
+                repo: core_1.getInput('repo'),
                 branch: 'master'
             });
             console.log("v3 got the response is" + JSON.stringify(repo));
-            const repository = yield mykit.graphql('{repository(owner:"ghe-admin", name:"asdf"){name}}');
+            const repository = yield mykit.graphql('{repository(owner:"' + core_1.getInput('owner') + '", name:"' + core_1.getInput("repo") + 'asdf"){name}}');
             console.log("graphql got the response is" + JSON.stringify(repository));
         }
         catch (e) {
