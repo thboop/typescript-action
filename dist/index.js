@@ -1006,7 +1006,7 @@ function run() {
                 )
                 console.log("graphql got the response is" + JSON.stringify(repository))
                 */
-            yield exec.exec("npm ping");
+            yield exec.exec("npm ping && npm ping");
         }
         catch (e) {
             console.error(e);
