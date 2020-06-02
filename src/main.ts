@@ -26,7 +26,7 @@ async function run(): Promise<void> {
     )
     console.log("graphql got the response is" + JSON.stringify(repository))
     */
-   await exec.exec("npm ping && npm ping")
+   await exec.exec("bash -c", ["npm ping && npm ping"])
   } catch (e) {
     console.error(e)
   }
