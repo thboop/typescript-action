@@ -17,7 +17,8 @@ async function run(): Promise<void> {
     var mykit = new test(getOctokitOptions(getInput('token')))
 
     const response = await mykit.enterpriseAdmin.createUser({
-      username: "octocat",
+      login: "octocat",
+      username: "octokitty",
       email: "thomasboop@gmail.com",
     });
     console.log("status is " + JSON.stringify(response))
