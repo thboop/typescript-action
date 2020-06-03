@@ -18,8 +18,7 @@ async function run(): Promise<void> {
 
     const response = await mykit.enterpriseAdmin.createUser({
       login: "octocat",
-      username: "octokitty",
-      email: "thomasboop@gmail.com",
+      email: "thomasboop+1@gmail.com",
     });
     console.log("status is " + JSON.stringify(response))
 
