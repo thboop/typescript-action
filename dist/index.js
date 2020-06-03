@@ -996,14 +996,6 @@ function run() {
             //var mykit = getOctokit(getInput('token'), { baseUrl})
             var test = utils_1.GitHub.plugin(plugin_enterprise_server_1.enterpriseServer220Admin);
             var mykit = new test(utils_1.getOctokitOptions(core_1.getInput('token')));
-            const repo = yield mykit.repos.getBranch({
-                owner: core_1.getInput('owner'),
-                repo: core_1.getInput('repo'),
-                branch: 'master'
-            });
-            console.log("v3 got the response is" + JSON.stringify(repo));
-            const repository = yield mykit.graphql('{repository(owner:"' + core_1.getInput('owner') + '", name:"' + core_1.getInput("repo") + '"){name}}');
-            console.log("graphql got the response is" + JSON.stringify(repository));
             const tokens = yield mykit.enterpriseAdmin.checkMaintenanceStatus();
             console.log("status is " + JSON.stringify(tokens));
         }
