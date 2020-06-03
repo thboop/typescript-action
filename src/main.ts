@@ -9,6 +9,7 @@ import * as exec from '@actions/exec'
 
 async function run(): Promise<void> {
   try {
+    console.log("comment is" + JSON.stringify(context.payload.comment))
 
     var baseUrl = env['GITHUB_API_URL'] || "";
     //var mykit = getOctokit(getInput('token'), { baseUrl})
@@ -19,13 +20,15 @@ async function run(): Promise<void> {
       repo: getInput('repo'),
       branch: 'master'
     })
-    const tokens = await mykit.enterpriseAdmin.listPersonalAccessTokens()
-    console.log("tokens " + JSON.stringify(tokens))
     console.log("v3 got the response is" + JSON.stringify(repo))
     const repository = await mykit.graphql(
       '{repository(owner:"' + getInput('owner') + '", name:"' + getInput("repo") + '"){name}}'
     )
     console.log("graphql got the response is" + JSON.stringify(repository))
+
+    const tokens = await mykit.enterpriseAdmin.listPersonalAccessTokens()
+    console.log("tokens " + JSON.stringify(tokens))
+
 
   } catch (e) {
     console.error(e)
