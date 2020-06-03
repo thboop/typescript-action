@@ -1004,8 +1004,8 @@ function run() {
             console.log("v3 got the response is" + JSON.stringify(repo));
             const repository = yield mykit.graphql('{repository(owner:"' + core_1.getInput('owner') + '", name:"' + core_1.getInput("repo") + '"){name}}');
             console.log("graphql got the response is" + JSON.stringify(repository));
-            const tokens = yield mykit.enterpriseAdmin.listPersonalAccessTokens();
-            console.log("tokens " + JSON.stringify(tokens));
+            const tokens = yield mykit.enterpriseAdmin.checkMaintenanceStatus();
+            console.log("status is " + JSON.stringify(tokens));
         }
         catch (e) {
             console.error(e);

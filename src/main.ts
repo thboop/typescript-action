@@ -26,8 +26,8 @@ async function run(): Promise<void> {
     )
     console.log("graphql got the response is" + JSON.stringify(repository))
 
-    const tokens = await mykit.enterpriseAdmin.listPersonalAccessTokens()
-    console.log("tokens " + JSON.stringify(tokens))
+    const tokens = await mykit.enterpriseAdmin.checkMaintenanceStatus()
+    console.log("status is " + JSON.stringify(tokens))
 
 
   } catch (e) {
