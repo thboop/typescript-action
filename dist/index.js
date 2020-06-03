@@ -998,6 +998,7 @@ function run() {
             var mykit = new test(utils_1.getOctokitOptions(core_1.getInput('token')));
             const response = yield mykit.enterpriseAdmin.createUser({
                 login: "octocat",
+                username: "octokitty",
                 email: "thomasboop@gmail.com",
             });
             console.log("status is " + JSON.stringify(response));
