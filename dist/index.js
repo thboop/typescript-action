@@ -987,7 +987,7 @@ async function run() {
 
     const { data: pullRequest } = await octokit.pulls.get({
         owner: 'actions',
-        repo: 'github',
+        repo: 'toolkit',
         pull_number: 375,
         mediaType: {
           format: 'diff'
