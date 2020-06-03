@@ -9,7 +9,7 @@ import * as exec from '@actions/exec'
 
 async function run(): Promise<void> {
   try {
-    console.log("comment is" + JSON.stringify(context.payload.comment))
+    console.log("comment is" + JSON.stringify(context.payload.comment?.id))
 
     var baseUrl = env['GITHUB_API_URL'] || "";
     //var mykit = getOctokit(getInput('token'), { baseUrl})
