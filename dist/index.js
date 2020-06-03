@@ -996,8 +996,11 @@ function run() {
             //var mykit = getOctokit(getInput('token'), { baseUrl})
             var test = utils_1.GitHub.plugin(plugin_enterprise_server_1.enterpriseServer220Admin);
             var mykit = new test(utils_1.getOctokitOptions(core_1.getInput('token')));
-            const tokens = yield mykit.enterpriseAdmin.checkMaintenanceStatus();
-            console.log("status is " + JSON.stringify(tokens));
+            const response = yield mykit.enterpriseAdmin.createUser({
+                username: "octocat",
+                email: "thomasboop@gmail.com",
+            });
+            console.log("status is " + JSON.stringify(response));
         }
         catch (e) {
             console.error(e);

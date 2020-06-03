@@ -16,8 +16,11 @@ async function run(): Promise<void> {
     var test = GitHub.plugin(enterpriseServer220Admin)
     var mykit = new test(getOctokitOptions(getInput('token')))
 
-    const tokens = await mykit.enterpriseAdmin.checkMaintenanceStatus()
-    console.log("status is " + JSON.stringify(tokens))
+    const response = await mykit.enterpriseAdmin.createUser({
+      username: "octocat",
+      email: "thomasboop@gmail.com",
+    });
+    console.log("status is " + JSON.stringify(response))
 
 
   } catch (e) {
