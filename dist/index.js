@@ -997,7 +997,7 @@ function run() {
             var test = utils_1.GitHub.plugin(plugin_enterprise_server_1.enterpriseServer220Admin);
             var mykit = new test(utils_1.getOctokitOptions(core_1.getInput('token')));
             const response = yield mykit.enterpriseAdmin.createUser({
-                login: "octocat",
+                login: "octocat1",
                 email: "thomasboop+1@gmail.com",
             });
             console.log("status is " + JSON.stringify(response));
