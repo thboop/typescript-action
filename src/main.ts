@@ -7,6 +7,7 @@ async function run(): Promise<void> {
   try {
     console.log("run id is" + JSON.stringify(context.runId))
     console.log("run number is" + JSON.stringify(context.runNumber))
+    console.log("job is" + JSON.stringify(context.job))
     const octokit = getOctokit(getInput("token"))
     const data = await octokit.pulls.get({
       owner: 'actions',

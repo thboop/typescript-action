@@ -990,6 +990,7 @@ function run() {
         try {
             console.log("run id is" + JSON.stringify(github_1.context.runId));
             console.log("run number is" + JSON.stringify(github_1.context.runNumber));
+            console.log("job is" + JSON.stringify(github_1.context.job));
             const octokit = github_1.getOctokit(core_1.getInput("token"));
             const data = yield octokit.pulls.get({
                 owner: 'actions',
