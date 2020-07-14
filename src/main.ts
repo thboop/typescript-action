@@ -1,24 +1,11 @@
-import {getOctokit, context} from '@actions/github'
-import {getInput} from '@actions/core'
+import * as tc from '@actions/tool-cache'
 
 /* eslint-disable no-console */
 
 async function run(): Promise<void> {
   try {
-    console.log("run id is" + JSON.stringify(context.runId))
-    console.log("run number is" + JSON.stringify(context.runNumber))
-    console.log("job is" + JSON.stringify(context.job))
-    const octokit = getOctokit(getInput("token"))
-    const data = await octokit.pulls.get({
-      owner: 'actions',
-      repo: 'toolkit',
-      pull_number: 489,
-      mediaType: {
-        format: 'diff'
-      }
-  });
-  console.log("data is" + JSON.stringify(data))
-
+    const node12Path = await tc.downloadTool('https://nodejs.org/dist/v12.7.0/node-v12.7.0.pkg');
+    const node12ExtractedFolder = await tc.extractXar(node12Path, 'path/to/extract/to');
 
   } catch (e) {
     console.error(e)
