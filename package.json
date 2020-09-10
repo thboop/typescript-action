@@ -25,7 +25,7 @@
   "author": "YourNameOrOrganization",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.4",
+    "@actions/core": "file:../actions-core-1.2.5.tgz",
     "@actions/exec": "^1.0.4",
     "@actions/github": "file:actions-github-3.0.0.tgz",
     "@actions/tool-cache": "file:../actions-tool-cache-1.5.5.tgz",

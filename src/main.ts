@@ -1,15 +1,18 @@
-import * as tc from '@actions/tool-cache'
+
+import * as core from '@actions/core'
 
 /* eslint-disable no-console */
 
 async function run(): Promise<void> {
-  try {
-    const node12Path = await tc.downloadTool('https://nodejs.org/dist/v12.7.0/node-v12.7.0.pkg');
-    const node12ExtractedFolder = await tc.extractXar(node12Path, 'path/to/extract/to');
-
-  } catch (e) {
-    console.error(e)
-  }
+  core.exportVariable("new1", true)
+  core.exportVariableOld("old1", true)
+  core.exportVariable("new2", 5)
+  core.exportVariableOld("old2", 5)
+  core.exportVariable("new3", "string")
+  core.exportVariableOld("old3", "string")
+  var json = {a:5, b: "hello", c: ["1", "2", "3"]}
+  core.exportVariable("new4", json)
+  core.exportVariableOld("old4", json)
 }
 
 run()
