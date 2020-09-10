@@ -304,7 +304,7 @@ function exportVariable(name, val) {
     const convertedVal = utils_1.toCommandValue(val);
     process.env[name] = convertedVal;
     const delimiter = "_GitHubActionsFileCommandDelimeter_";
-    var commandValue = `name<<${delimiter}${os.EOL}${convertedVal}${os.EOL}${delimiter}`;
+    var commandValue = `${name}<<${delimiter}${os.EOL}${convertedVal}${os.EOL}${delimiter}`;
     file_command_1.issueCommand('ENV', commandValue);
 }
 exports.exportVariable = exportVariable;
