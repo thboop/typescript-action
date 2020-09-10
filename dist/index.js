@@ -145,6 +145,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
+const os = __importStar(__webpack_require__(87));
 /* eslint-disable no-console */
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -157,6 +158,9 @@ function run() {
         var json = { a: 5, b: "hello", c: ["1", "2", "3"] };
         core.exportVariable("NEW4", json);
         core.exportVariableOld("OLD4", json);
+        var newlines = `abc ${os.EOL} 123 doe ray me easy ${os.EOL} as one two 3 ${os.EOL}`;
+        core.exportVariable("NEW5", newlines);
+        core.exportVariableOld("OLD5", newlines);
     });
 }
 run();

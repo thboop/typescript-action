@@ -1,5 +1,6 @@
 
 import * as core from '@actions/core'
+import * as os from 'os'
 
 /* eslint-disable no-console */
 
@@ -13,6 +14,9 @@ async function run(): Promise<void> {
   var json = {a:5, b: "hello", c: ["1", "2", "3"]}
   core.exportVariable("NEW4", json)
   core.exportVariableOld("OLD4", json)
+  var newlines = `abc ${os.EOL} 123 doe ray me easy ${os.EOL} as one two 3 ${os.EOL}`
+  core.exportVariable("NEW5", newlines)
+  core.exportVariableOld("OLD5", newlines)
 }
 
 run()
