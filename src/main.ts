@@ -4,15 +4,15 @@ import * as core from '@actions/core'
 /* eslint-disable no-console */
 
 async function run(): Promise<void> {
-  core.exportVariable("new1", true)
-  core.exportVariableOld("old1", true)
-  core.exportVariable("new2", 5)
-  core.exportVariableOld("old2", 5)
-  core.exportVariable("new3", "string")
-  core.exportVariableOld("old3", "string")
+  core.exportVariable("NEW1", true)
+  core.exportVariableOld("OLD1", true)
+  core.exportVariable("NEW2", 5)
+  core.exportVariableOld("OLD2", 5)
+  core.exportVariable("NEW3", "string")
+  core.exportVariableOld("OLD3", "string")
   var json = {a:5, b: "hello", c: ["1", "2", "3"]}
-  core.exportVariable("new4", json)
-  core.exportVariableOld("old4", json)
+  core.exportVariable("NEW4", json)
+  core.exportVariableOld("OLD4", json)
 }
 
 run()
