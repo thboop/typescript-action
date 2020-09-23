@@ -48,6 +48,8 @@ module.exports =
 
 "use strict";
 
+// We use any as a valid input type
+/* eslint-disable @typescript-eslint/no-explicit-any */
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Sanitizes an input into a string so it can be passed into issueCommand safely
@@ -94,7 +96,7 @@ const fs = __importStar(__webpack_require__(747));
 const os = __importStar(__webpack_require__(87));
 const utils_1 = __webpack_require__(82);
 function issueCommand(command, message) {
-    let filePath = process.env[`GITHUB_${command}`];
+    const filePath = process.env[`GITHUB_${command}`];
     if (!filePath) {
         throw new Error(`Unable to find environment variable for file command ${command}`);
     }
@@ -150,17 +152,21 @@ const os = __importStar(__webpack_require__(87));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         core.exportVariable("NEW1", true);
-        core.exportVariableOld("OLD1", true);
         core.exportVariable("NEW2", 5);
-        core.exportVariableOld("OLD2", 5);
         core.exportVariable("NEW3", "string");
-        core.exportVariableOld("OLD3", "string");
         var json = { a: 5, b: "hello", c: ["1", "2", "3"] };
         core.exportVariable("NEW4", json);
-        core.exportVariableOld("OLD4", json);
         var newlines = `abc ${os.EOL} 123 doe ray me easy ${os.EOL} as one two 3 ${os.EOL}`;
         core.exportVariable("NEW5", newlines);
-        core.exportVariableOld("OLD5", newlines);
+        core.addPath("old");
+        process.env['GITHUB_ENV'] = '';
+        process.env['GITHUB_PATH'] = '';
+        core.exportVariable("OLD1", true);
+        core.exportVariable("OLD2", 5);
+        core.exportVariable("OLD3", "string");
+        core.exportVariable("OLD4", json);
+        core.exportVariable("OLD5", newlines);
+        core.addPath("new");
     });
 }
 run();
@@ -307,17 +313,17 @@ var ExitCode;
 function exportVariable(name, val) {
     const convertedVal = utils_1.toCommandValue(val);
     process.env[name] = convertedVal;
-    const delimiter = "_GitHubActionsFileCommandDelimeter_";
-    var commandValue = `${name}<<${delimiter}${os.EOL}${convertedVal}${os.EOL}${delimiter}`;
-    file_command_1.issueCommand('ENV', commandValue);
+    const filePath = process.env['GITHUB_ENV'] || '';
+    if (filePath) {
+        const delimiter = '_GitHubActionsFileCommandDelimeter_';
+        const commandValue = `${name}<<${delimiter}${os.EOL}${convertedVal}${os.EOL}${delimiter}`;
+        file_command_1.issueCommand('ENV', commandValue);
+    }
+    else {
+        command_1.issueCommand('set-env', { name }, convertedVal);
+    }
 }
 exports.exportVariable = exportVariable;
-function exportVariableOld(name, val) {
-    const convertedVal = utils_1.toCommandValue(val);
-    process.env[name] = convertedVal;
-    command_1.issueCommand('set-env', { name }, convertedVal);
-}
-exports.exportVariableOld = exportVariableOld;
 /**
  * Registers a secret which will get masked from logs
  * @param secret value of the secret
@@ -331,7 +337,13 @@ exports.setSecret = setSecret;
  * @param inputPath
  */
 function addPath(inputPath) {
-    file_command_1.issueCommand('PATH', inputPath);
+    const filePath = process.env['GITHUB_PATH'] || '';
+    if (filePath) {
+        file_command_1.issueCommand('PATH', inputPath);
+    }
+    else {
+        command_1.issueCommand('add-path', {}, inputPath);
+    }
     process.env['PATH'] = `${inputPath}${path.delimiter}${process.env['PATH']}`;
 }
 exports.addPath = addPath;
