@@ -7,5 +7,9 @@ inputs:
     description: 'input description here'
     default: 'default value if applicable'
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: "composite"
+  steps:
+    - run: echo ${{secrets.test}}
+      shell: bash
+    - run: echo "hey"
+      shell: bash
