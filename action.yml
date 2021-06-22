@@ -9,7 +9,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echo ${{secrets.test}}
+    - run: echo "hi"
       shell: bash
     - run: echo "hey"
       shell: bash
