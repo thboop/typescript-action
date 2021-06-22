@@ -13,3 +13,4 @@ runs:
       shell: bash
     - run: echo "hey"
       shell: bash
+    - uses: actions/checkout@v2
