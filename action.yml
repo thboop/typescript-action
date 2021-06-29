@@ -9,7 +9,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echo "hey"
+    - run: echo "${{ hashFiles('**') }}"
+      shell: bash
+    - run: echo "hey" >> test.json
       shell: bash
     - run: echo "${{ hashFiles('**') }}"
       shell: bash
