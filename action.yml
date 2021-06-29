@@ -9,8 +9,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echo "hi"
-      shell: bash
     - run: echo "hey"
       shell: bash
     - uses: actions/checkout@v2
@@ -19,3 +17,5 @@ runs:
       if: ${{ github.ref == 'refs/heads/master' }}
       with:
         node-version: 12
+    - run: echo "${{ hashFiles('**') }}"
+      shell: bash
