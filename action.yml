@@ -11,7 +11,5 @@ runs:
   steps:
     - run: echo "hey"
       shell: bash
-      with:
-        node-version: 12
     - run: echo "${{ hashFiles('**') }}"
       shell: bash
