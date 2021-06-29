@@ -12,9 +12,7 @@ runs:
     - run: echo "hey"
       shell: bash
     - uses: actions/checkout@v2
-      if: ${{ github.ref == 'refs/heads/main' }}
     - uses: actions/setup-node@v2
-      if: ${{ github.ref == 'refs/heads/master' }}
       with:
         node-version: 12
     - run: echo "${{ hashFiles('**') }}"
